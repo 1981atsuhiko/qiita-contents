@@ -9,7 +9,9 @@
   - 連番は執筆・公開順。ファイル名と Qiita 記事ID（フロントマターの `id`）は無関係なので、リネームしても公開済み記事との紐付けは保たれる
   - 新規作成は `npx qiita new <slug>` → `public/` 内で既存ファイルの最大連番+1を付けてリネーム → 編集、の順で進める
 - `npx qiita ...` コマンドは必ず `qiita-articles` ディレクトリ内で実行する（親ディレクトリで実行すると実行ファイルが見つからずエラーになる）
-- `npx qiita new` はローカルにファイルを作るだけで Qiita への通信は発生しない。`npx qiita publish <basename>` が唯一の反映コマンドで、`id` が `null` なら新規POST、入っていればPATCH更新になる
+- `npx qiita new` はローカルにファイルを作るだけで Qiita への通信は発生しない。Qiitaへの反映は `npx qiita publish <basename>` のみ
+  - **新規投稿の反映**: フロントマターの `id` が `null` の状態で `npx qiita publish <basename>` を実行 → 新規POSTされ、`id` が自動で書き込まれる
+  - **記事更新時**: 既存記事（`id` が入っている状態）を編集後、同じく `npx qiita publish <basename>` を実行 → PATCH更新される。新規投稿時と同じコマンドで良く、`id` の有無で動作が自動的に切り替わる
 
 ### 著者の立場・視点
 
